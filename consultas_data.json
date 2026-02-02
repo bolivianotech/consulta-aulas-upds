@@ -1,0 +1,1381 @@
+[
+  {
+    "turno": "MAÑANA",
+    "materia": "Administración de Base de Datos I",
+    "docente": "Moscoso Zeballos Pablo Alvaro",
+    "aula": "LAB-09",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Administración I",
+    "docente": "Franco Montero Sheila Geraldine",
+    "aula": "D-12",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Administración I",
+    "docente": "Jaro Gutierrez Hans Wilson",
+    "aula": "B-16",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Administración I",
+    "docente": "Pavisich Quiroga Maria Lina",
+    "aula": "A-06",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Álgebra Lineal",
+    "docente": "Cuellar Marquez Miguel Esteban",
+    "aula": "C-28",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Álgebra Lineal",
+    "docente": "Veizaga Gonzales Esther",
+    "aula": "C-06",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Análisis Crítico de la Realidad Nacional e Internacional",
+    "docente": "Rojas Mendoza Tito Guido",
+    "aula": "C-17",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Análisis Crítico de la Realidad Nacional e Internacional",
+    "docente": "Torrico Zabalaga Ivan Omar",
+    "aula": "C-13",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Base de Datos II",
+    "docente": "NO DEFINIDO",
+    "aula": "LAB-08",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Base de Datos II",
+    "docente": "Tantani Mamani Gustavo",
+    "aula": "LAB-04",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Cálculo I",
+    "docente": "Miranda Hoyos Victor",
+    "aula": "C-30",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Cálculo II",
+    "docente": "Catari Flores Abel Timoteo",
+    "aula": "D-05",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Clínica II",
+    "docente": "SCHEJTMAN MELGAR EVELYN",
+    "aula": "C-20",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Comportamiento Organizacional",
+    "docente": "Carrazana Paz Coranda Valeria",
+    "aula": "C-12",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Comunicación Educativa",
+    "docente": "Rodriguez Vargas Alejandro Alex",
+    "aula": "C-01",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Contabilidad Superior",
+    "docente": "Ortega Arenas Jose Luis",
+    "aula": "C-02",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Civil III",
+    "docente": "Campero Cejas Eduardo",
+    "aula": "C-16",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Civil V",
+    "docente": "Castillo Vaca Jorge Hugo",
+    "aula": "B-11",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Comercial I",
+    "docente": "NO DEFINIDO",
+    "aula": "C-04",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Constitucional II",
+    "docente": "Padilla Delgado Freddy David",
+    "aula": "C-07",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Constitucional II",
+    "docente": "Ramirez Cruz Diego",
+    "aula": "D-15",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho de Familia, Niño, Niña y Adolescente",
+    "docente": "Barrientos Justiniano Genoveva",
+    "aula": "B-05",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Internacional Privado",
+    "docente": "Cesar Pinto Yoseland",
+    "aula": "C-09",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Derecho Laboral y Social",
+    "docente": "NO DEFINIDO",
+    "aula": "C-08",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Desarrollo Evolutivo I",
+    "docente": "Mojica Vargas Mariela Carolina",
+    "aula": "B-15",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Dificultades de Aprendizaje",
+    "docente": "CALLA VEDIA CECILIA ROSARIO",
+    "aula": "C-11",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Diseño Gráfico Especializado",
+    "docente": "Valverde Montaño David",
+    "aula": "B-07",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Documentación Periodística",
+    "docente": "Rioja Morales Dorkas Eliana",
+    "aula": "A-04",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Economía Política",
+    "docente": "Parada Melgar Jose Luis",
+    "aula": "B-17",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Emprendedurismo",
+    "docente": "Zimeri David Gabriela Ines",
+    "aula": "C-10",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Estadística Inferencial",
+    "docente": "Herrera Filipoff Raquel Eugenia",
+    "aula": "D-13",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Estadística Inferencial",
+    "docente": "Loza Rodriguez Juan Carlos",
+    "aula": "D-12",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Estructuras Discretas",
+    "docente": "Jimenez Veizaga Lili",
+    "aula": "D-14",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Física II",
+    "docente": "Carballo Lopez Roly",
+    "aula": "C-29",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Formación Social Boliviana",
+    "docente": "Arce Rudon Edgar Alfredo",
+    "aula": "A-03",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Fundamentos de Matemáticas",
+    "docente": "Chura Sucojayo Ricardo",
+    "aula": "A-09",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Gestión de la Calidad II",
+    "docente": "Castro Suarez Ysnaider",
+    "aula": "C-24",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Gestión de Recursos Humanos",
+    "docente": "Morales Aragon Alejandra Mariel",
+    "aula": "D-06",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Herramientas Digitales",
+    "docente": "Gutierrez Vargas Teresa",
+    "aula": "B-08",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Historia Sociopolítica Boliviana",
+    "docente": "NO DEFINIDO",
+    "aula": "B-01",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Informática Educativa",
+    "docente": "NO DEFINIDO",
+    "aula": "C-23",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Informática Educativa",
+    "docente": "Perez Flores Gustavo Rodolfo",
+    "aula": "B-06",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Inglés Técnico I",
+    "docente": "Gascher Portales Ruth",
+    "aula": "A-10",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Inglés Técnico I",
+    "docente": "Severiche Toledo Elizabeth",
+    "aula": "B-12",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Insight",
+    "docente": "Villa Pereira Oscar Omar",
+    "aula": "D-10",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Intervención en Crisis",
+    "docente": "Melgar Cespedes Maria Cintia",
+    "aula": "D-02",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Introducción a la Psicología",
+    "docente": "Pinto Cruz Carlos Gustavo",
+    "aula": "B-04",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Introducción a la Psicopedagogía",
+    "docente": "Barrios Arenas Lobsang Emerson",
+    "aula": "A-02",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Liderazgo y Comunicación Efectiva",
+    "docente": "Enriquez Contreras Diego Andres",
+    "aula": "A-07",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Liderazgo y Dinámica de Grupos",
+    "docente": "Aragon Gonzales Nataly Krisia",
+    "aula": "D-07",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Liderazgo y Dinámica de Grupos",
+    "docente": "Rojas Quispe Edith Viviana",
+    "aula": "D-11",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Metodología de la Investigación Científica",
+    "docente": "Cespedes Avendaño Sandra Elizabeth",
+    "aula": "A-05",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Metodología de la Investigación Científica",
+    "docente": "Hidalgo Moyano Herbas Harold Holwy",
+    "aula": "B-19",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Metodología de la Investigación Científica",
+    "docente": "Serrano Herrera Arturo",
+    "aula": "B-14",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Microeconomía I",
+    "docente": "Rodriguez Lozano Cesar Virgilio",
+    "aula": "B-03",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Negociación y Concertación",
+    "docente": "Olivera Castro Erica",
+    "aula": "C-27",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Operaciones Unitarias I",
+    "docente": "Justiniano Gallardo Norberto Ely",
+    "aula": "D-01",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Opinión Pública y Auditoría de Medios",
+    "docente": "Colque Prieto Mercedes",
+    "aula": "C-14",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Orientación Vocacional",
+    "docente": "Eguez Melgar Rocio Aracely",
+    "aula": "B-10",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Política Internacional Latinoamericana",
+    "docente": "Viera Suarez Erica Angelica",
+    "aula": "C-22",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Práctica Profesional I",
+    "docente": "NO DEFINIDO",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 08:00-11:15"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Práctica Profesional II",
+    "docente": "NO DEFINIDO",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 08:00-11:15"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Producción Televisiva y Radial",
+    "docente": "Cáceres Mollo Alexander",
+    "aula": "C-13",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Producción y Manufactura Flexible II",
+    "docente": "Torrez Tapia Carlos Jesus",
+    "aula": "D-08",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Programación Numérica y Aplicaciones",
+    "docente": "Lopez Bonifaz Juan Javier",
+    "aula": "C-25",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Proyectos Educativos II",
+    "docente": "Mamani Padilla Virginia Lucero",
+    "aula": "C-19",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Psicoanálisis II",
+    "docente": "Serrano Serrano Judith Esther",
+    "aula": "C-26",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Psicología de la Comunicación",
+    "docente": "Diaz Vargas Mirsa",
+    "aula": "C-15",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Psicopedagogía Familiar",
+    "docente": "Vilte Cata Deisy",
+    "aula": "C-18",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Redacción de Informes y Boletines de Prensa",
+    "docente": "Quiñones Zambrana Antonio Omar",
+    "aula": "C-21",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Redacción y Estilo",
+    "docente": "Deisy Arminda Pariente Suarez",
+    "aula": "A-11",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Redes I",
+    "docente": "Colque Torrico Maria Bertha",
+    "aula": "LAB-05",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Seguridad Informática I",
+    "docente": "Guzman Centellas Hugo Arnaldo",
+    "aula": "LAB-07",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Taller de Sistemas Operativos I",
+    "docente": "Rivas Vargas Edmundo",
+    "aula": "LAB-10",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Técnicas Proyectivas I",
+    "docente": "Omonte Reaza Essael Tempesst Magaly",
+    "aula": "B-13",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Teoría General del Derecho",
+    "docente": "Quiroga Balderrama Jenny",
+    "aula": "B-18",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Teoría General del Derecho",
+    "docente": "Suarez Zeballos Raquel",
+    "aula": "A-08",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Teorías de Conflicto",
+    "docente": "Casanova Rioja Janin Karina",
+    "aula": "B-09",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Teorías Psicopedagógicas",
+    "docente": "Aleman Valdivia Paola Danny",
+    "aula": "A-12",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MAÑANA",
+    "materia": "Ventas",
+    "docente": "Teran Moscoso Daniela Maria",
+    "aula": "B-02",
+    "horario": "LUN A VIE 07:30-10:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Administración I",
+    "docente": "Cuellar Labardenz Jose Christian",
+    "aula": "A-06",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Cálculo I",
+    "docente": "NO DEFINIDO",
+    "aula": "C-08",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Cooperación Internacional",
+    "docente": "Viera Suarez Erica Angelica",
+    "aula": "B-03",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Derecho Comercial I",
+    "docente": "NO DEFINIDO",
+    "aula": "C-04",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Desarrollo Evolutivo I",
+    "docente": "NO DEFINIDO",
+    "aula": "B-15",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Dificultades de Aprendizaje",
+    "docente": "Mojica Vargas Mariela Carolina",
+    "aula": "C-11",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Diseño Web I",
+    "docente": "NO DEFINIDO",
+    "aula": "LAB-07",
+    "horario": "LUN A VIE 12:30-14:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Economía Política",
+    "docente": "Parada Melgar Jose Luis",
+    "aula": "B-17",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Educación Especial II",
+    "docente": "Mamani Padilla Virginia Lucero",
+    "aula": "A-01",
+    "horario": "LUN,MIE Y VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Estadística Inferencial",
+    "docente": "NO DEFINIDO",
+    "aula": "D-12",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Estadística Inferencial",
+    "docente": "NO DEFINIDO",
+    "aula": "C-07",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Evaluación Psicológica I",
+    "docente": "Eguez Herrera Leslie Rocio Anabella",
+    "aula": "A-02",
+    "horario": "LUN,MIE Y VIE 10:30-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Informática Educativa",
+    "docente": "Veizaga Gonzales Esther",
+    "aula": "B-06",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Insight",
+    "docente": "Teran Moscoso Daniela Maria",
+    "aula": "C-14",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Inteligencia Artificial I",
+    "docente": "Zambrana Chacon Jaime",
+    "aula": "LAB-05",
+    "horario": "LUN A VIE 12:30-15:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Liderazgo y Comunicación Efectiva",
+    "docente": "Barrios Arenas Lobsang Emerson",
+    "aula": "A-07",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Metodología de la Investigación Científica",
+    "docente": "Rodriguez Vargas Alejandro Alex",
+    "aula": "A-05",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Microeconomía I",
+    "docente": "Torrico Zabalaga Ivan Omar",
+    "aula": "B-03",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Programación I",
+    "docente": "Lopez Leaño Jared",
+    "aula": "LAB-08",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Programación Web I",
+    "docente": "Cruz Claure Robert Wilson",
+    "aula": "LAB-06",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Psicología de la Comunicación",
+    "docente": "NO DEFINIDO",
+    "aula": "C-15",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Taller de Sistemas Operativos I",
+    "docente": "Rivas Vargas Edmundo",
+    "aula": "LAB-10",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "MEDIO DIA",
+    "materia": "Teoría General del Derecho",
+    "docente": "Suarez Zeballos Raquel",
+    "aula": "A-08",
+    "horario": "LUN A VIE 10:31-13:30"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Administración de Base de Datos I",
+    "docente": "ROMAN TERRAZAS DANIEL",
+    "aula": "LAB-08",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Administración I",
+    "docente": "Cuellar Labardenz Jose Christian",
+    "aula": "C-08",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Administración I",
+    "docente": "Meneses Murguia Karen Grissel",
+    "aula": "B-17",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Administración I",
+    "docente": "Perez Roca Carmelo",
+    "aula": "A-09",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Álgebra Lineal",
+    "docente": "Cuellar Marquez Miguel Esteban",
+    "aula": "C-02",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Auditoría Gubernamental",
+    "docente": "Chavarria Zabala Roque",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Auditoría Tributaria y Fiscal",
+    "docente": "Villegas Mendivil Waldo",
+    "aula": "D-14",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Base de Datos I",
+    "docente": "Tantani Mamani Gustavo",
+    "aula": "LAB-04",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Cálculo I",
+    "docente": "Miranda Hoyos Victor",
+    "aula": "B-01",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Comercio Exterior",
+    "docente": "Baspineiro Correa Wilver",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Comercio Exterior",
+    "docente": "Fuentes Ruiz Skarlin Leonela",
+    "aula": "D-05",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Comunicación, Género y Cultura de Masas en el Mundo Contemporáneo",
+    "docente": "Nina Santos Demetrio",
+    "aula": "B-06",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Comunicaciones Digitales I",
+    "docente": "NO DEFINIDO",
+    "aula": "C-19",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Contabilidad Agropecuaria",
+    "docente": "Ortega Arenas Jose Luis",
+    "aula": "D-06",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Contabilidad de Costos II",
+    "docente": "Rojas Galvez Lizbeth Esther",
+    "aula": "D-01",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Criminología y Ciencias Forenses",
+    "docente": "NO DEFINIDO",
+    "aula": "A-06",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Cultura y Sociedad. Nuevas Narrativas",
+    "docente": "Torrico Gutierrez Ana Carola",
+    "aula": "A-05",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Derecho Civil II",
+    "docente": "NO DEFINIDO",
+    "aula": "C-15",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Derecho Civil IV",
+    "docente": "NO DEFINIDO",
+    "aula": "C-10",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Derecho del Consumidor",
+    "docente": "NO DEFINIDO",
+    "aula": "B-14",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Derechos Humanos",
+    "docente": "NO DEFINIDO",
+    "aula": "B-11",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Desarrollo de Sistemas I",
+    "docente": "Serrudo Terrazas David",
+    "aula": "LAB-09",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Desarrollo de Sistemas II",
+    "docente": "NO DEFINIDO",
+    "aula": "LAB-05",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Educación Especial I",
+    "docente": "Velasco Saucedo Eileen Carolina",
+    "aula": "C-06",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Estadística Inferencial",
+    "docente": "Lopez Bonifaz Juan Javier",
+    "aula": "C-09",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Estructuras Discretas",
+    "docente": "Rivas Castillo Nain Edmundo",
+    "aula": "A-10",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Fundamentos de Matemáticas",
+    "docente": "Chura Sucojayo Ricardo",
+    "aula": "A-12",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Gabinete de Auditoría",
+    "docente": "APAZA VILA ALEX HERMINIO",
+    "aula": "C-16",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Gerencia Estrategia Empresarial",
+    "docente": "HUANCA CAYOJA EDSON",
+    "aula": "D-15",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Gestión de la Calidad I",
+    "docente": "Salo Condori Gineth Jhoselyn",
+    "aula": "D-11",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Gestión de la Comunicación de Crisis",
+    "docente": "Quiñones Zambrana Antonio Omar",
+    "aula": "C-26",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Ingeniería de Software II",
+    "docente": "NO DEFINIDO",
+    "aula": "C-27",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Inglés Técnico I",
+    "docente": "Gascher Portales Ruth",
+    "aula": "A-11",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Intervención Socio Comunitaria",
+    "docente": "RODRIGUEZ AGUERO SERGIO ERNESTO",
+    "aula": "C-13",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Introducción a la Psicopedagogía",
+    "docente": "Vilte Cata Deisy",
+    "aula": "B-04",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Investigación de Mercado I",
+    "docente": "Camacho Moreno Santos Gualberto",
+    "aula": "C-04",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Investigación de Mercado I",
+    "docente": "Linares Montaño Duglas Luis",
+    "aula": "C-29",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Investigación Operativa I",
+    "docente": "Velez Gandarillas Oscar Luis",
+    "aula": "C-13",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Liderazgo y Comunicación Efectiva",
+    "docente": "NO DEFINIDO",
+    "aula": "A-07",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Liderazgo y Dinámica de Grupos",
+    "docente": "NO DEFINIDO",
+    "aula": "D-10",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Medicina Legal",
+    "docente": "NO DEFINIDO",
+    "aula": "B-12",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Metodología de la Investigación Científica",
+    "docente": "NO DEFINIDO",
+    "aula": "B-05",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Métodos Alternos de Solución de Conflictos",
+    "docente": "NO DEFINIDO",
+    "aula": "B-16",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Métodos y Técnicas de Investigación Aplicada",
+    "docente": "Rivas Castillo Nain Edmundo",
+    "aula": "C-30",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Microeconomía I",
+    "docente": "Rodriguez Lozano Cesar Virgilio",
+    "aula": "C-07",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Modalidad de Grado I",
+    "docente": "Saavedra Arteaga Diego Alberto",
+    "aula": "AU-VIRTUAL, B-10",
+    "horario": "LUN A MIE 19:01-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Modelos Pedagógicos",
+    "docente": "Aleman Valdivia Paola Danny",
+    "aula": "A-03",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Neurología I",
+    "docente": "Enriquez Contreras Diego Andres",
+    "aula": "B-07",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Opinión Pública y Auditoría de Medios",
+    "docente": "NO DEFINIDO",
+    "aula": "B-02",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Organización y Sistemas",
+    "docente": "Callau Campos Marco Antonio",
+    "aula": "D-07",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Paradigmas en Psicología",
+    "docente": "Pinto Cruz Carlos Gustavo",
+    "aula": "A-08",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Periodismo Digital",
+    "docente": "Carrión Cárdenas Beby Nataly",
+    "aula": "C-11",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Presupuestos y Planificación",
+    "docente": "Heredia Medina Andres",
+    "aula": "D-12",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Procedimiento Constitucional",
+    "docente": "NO DEFINIDO",
+    "aula": "C-14",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Procesos Industriales I",
+    "docente": "Gabriel Colque Jhonny Milton",
+    "aula": "C-21",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Producción Radiofónica",
+    "docente": "NO DEFINIDO",
+    "aula": "C-22",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Producción y Manufactura Flexible I",
+    "docente": "Quisbert Corina Ariel Rene",
+    "aula": "D-02",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Programación III",
+    "docente": "NO DEFINIDO",
+    "aula": "LAB-08",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Psicodiagnóstico",
+    "docente": "Serrano Serrano Judith Esther",
+    "aula": "B-15",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Psicología de la Comunicación",
+    "docente": "Diaz Vargas Mirsa",
+    "aula": "D-08",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Psicología Sistémica",
+    "docente": "Eguez Herrera Leslie Rocio Anabella",
+    "aula": "C-12",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Psicología Social II",
+    "docente": "Omonte Reaza Essael Tempesst Magaly",
+    "aula": "C-01",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Psicopatología",
+    "docente": "Fernandez Velez Maria Isabel",
+    "aula": "C-03",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Redacción y Estilo",
+    "docente": "Verazaín Basma María Fadua",
+    "aula": "A-02",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Redes II",
+    "docente": "Colque Torrico Maria Bertha",
+    "aula": "LAB-10",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Robótica",
+    "docente": "Carballo Lopez Roly",
+    "aula": "C-23",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Seguridad e Higiene Ocupacional",
+    "docente": "Castro Suarez Ysnaider",
+    "aula": "D-09",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Seguridad Informática I",
+    "docente": "NO DEFINIDO",
+    "aula": "C-20",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Sistemas de Información III",
+    "docente": "NO DEFINIDO",
+    "aula": "LAB-07",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Taller de Sistemas Operativos I",
+    "docente": "Rivas Vargas Edmundo",
+    "aula": "LAB-01",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Técnicas Televisivas I",
+    "docente": "Nogales Garcia Mark Denver",
+    "aula": "B-03",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Tecnologías Inalámbricas",
+    "docente": "NO DEFINIDO",
+    "aula": "LAB-03",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Teorías de la Personalidad",
+    "docente": "Bascope Sarue Lourdez Daniela",
+    "aula": "A-04",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Termodinámica",
+    "docente": "Justiniano Gallardo Norberto Ely",
+    "aula": "C-18",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "NOCHE",
+    "materia": "Trading",
+    "docente": "Mendoza Torrico Wilder",
+    "aula": "D-13",
+    "horario": "LUN A VIE 19:00-22:00"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Comportamiento Organizacional",
+    "docente": "NO DEFINIDO",
+    "aula": "B-06",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Contabilidad de Costos I",
+    "docente": "Garcia Velasco Eduyn",
+    "aula": "B-11",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Contabilidad de Costos I",
+    "docente": "Salazar Perez Gustavo",
+    "aula": "B-14",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Contabilidad Empresarial II",
+    "docente": "Heredia Medina Andres",
+    "aula": "B-04",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derecho Civil I",
+    "docente": "Ruiz Zabala Ana Paola",
+    "aula": "A-06",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derecho de Familia, Niño, Niña y Adolescente",
+    "docente": "NO DEFINIDO",
+    "aula": "A-08",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derecho Económico y Financiero",
+    "docente": "Cruz Sequeiros Sergio Denis",
+    "aula": "A-07",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derecho Internacional Público",
+    "docente": "NO DEFINIDO",
+    "aula": "A-10",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derecho Laboral y Social",
+    "docente": "NO DEFINIDO",
+    "aula": "B-07",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derechos Humanos",
+    "docente": "Palenque Vega Lisbeth Jael",
+    "aula": "B-05",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Derechos Humanos",
+    "docente": "Palenque Vega Lisbeth Jael",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Emprendedurismo",
+    "docente": "Fuentes Ruiz Skarlin Leonela",
+    "aula": "A-09",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Finanzas Empresariales I",
+    "docente": "Mendoza Torrico Wilder",
+    "aula": "B-12",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Medicina Legal",
+    "docente": "Tariffa Bascope Walker",
+    "aula": "B-16",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Metodología de la Investigación Científica",
+    "docente": "Serrano Herrera Arturo",
+    "aula": "A-05",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Práctica Profesional I",
+    "docente": "NO DEFINIDO",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Práctica Profesional II",
+    "docente": "NO DEFINIDO",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Práctica Profesional II",
+    "docente": "NO DEFINIDO",
+    "aula": "S AULA",
+    "horario": "LUN A VIE 15:00-18:15"
+  },
+  {
+    "turno": "TARDE",
+    "materia": "Psicología de la Comunicación",
+    "docente": "Deisy Arminda Pariente Suarez",
+    "aula": "B-06",
+    "horario": "LUN A VIE 15:00-18:15"
+  }
+]
