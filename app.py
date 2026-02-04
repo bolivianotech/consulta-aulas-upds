@@ -60,6 +60,22 @@ def get_docentes_unicos() -> list[str]:
 # Endpoints
 # ---------------------------------------------------------------------------
 
+@app.route("/", methods=["GET"])
+def index():
+    """Ruta raíz - redirige a la documentación de la API."""
+    return jsonify({
+        "message": "API de Consulta de Aulas - UPDS",
+        "version": "1.0",
+        "endpoints": {
+            "/api/health": "Verificación de estado del servicio",
+            "/api/docentes": "Lista todos los docentes (opcional: ?q=filtro)",
+            "/api/consulta": "Consulta aulas por docente (?docente=nombre&turno=opcional)",
+            "/api/aulas": "Lista todas las asignaciones con filtros opcionales"
+        },
+        "docs": "https://github.com/bolivianotech/consulta-aulas-upds"
+    })
+
+
 @app.route("/api/health", methods=["GET"])
 def health():
     """Verificación de estado del servicio."""
