@@ -1,1 +1,15 @@
+# =============================================================================
+# DEPENDENCIAS - Consulta de Aulas UPDS
+# =============================================================================
+# 
+# Este archivo lista todas las dependencias necesarias para ejecutar la API.
+# Para instalar: pip install -r requirements.txt
+#
+# DEPENDENCIAS:
+#   - flask: Framework web para la API REST
+#   - openpyxl: Lectura de archivos Excel (.xlsx) para la carga de datos
+#
+# =============================================================================
+
 flask>=3.0.0
+openpyxl>=3.1.0
