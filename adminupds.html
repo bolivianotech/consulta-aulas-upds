@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Consulta de Aulas UPDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-tertiary: #334155; --bg-hover: #475569;
+            --text-primary: #f1f5f9; --text-secondary: #94a3b8; --text-muted: #64748b;
+            --accent-primary: #3b82f6; --accent-hover: #2563eb; --accent-success: #10b981;
+            --accent-warning: #f59e0b; --accent-danger: #ef4444;
+            --turno-manana: #fbbf24; --turno-mediodia: #fb923c; --turno-tarde: #a78bfa; --turno-noche: #38bdf8;
+            --border-color: #334155; --border-radius: 8px; --border-radius-lg: 12px;
+            --font-main: 'Outfit', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+            --transition-fast: 150ms ease; --transition-normal: 250ms ease;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        
+        .header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); margin-bottom: 32px; }
+        .header__title { display: flex; align-items: center; gap: 12px; }
+        .header__icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent-primary), #8b5cf6); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .header__text h1 { font-size: 1.5rem; font-weight: 600; }
+        .header__text p { font-size: 0.875rem; color: var(--text-secondary); }
+        .header__nav { display: flex; gap: 12px; }
+        .header__link { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: all var(--transition-fast); }
+        .header__link:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .stat-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 20px; }
+        .stat-card__label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .stat-card__value { font-size: 2rem; font-weight: 700; }
+        .stat-card--accent .stat-card__value { color: var(--accent-primary); }
+        .stat-card--success .stat-card__value { color: var(--accent-success); }
+        
+        .section { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); margin-bottom: 24px; overflow: hidden; }
+        .section__header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border-color); background: rgba(0,0,0,0.2); }
+        .section__title { font-size: 1.125rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .section__title-icon { width: 32px; height: 32px; background: var(--bg-tertiary); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .section__content { padding: 24px; }
+        
+        .dropzone { border: 2px dashed var(--border-color); border-radius: var(--border-radius-lg); padding: 48px 24px; text-align: center; transition: all var(--transition-normal); cursor: pointer; position: relative; }
+        .dropzone:hover, .dropzone--active { border-color: var(--accent-primary); background: rgba(59,130,246,0.05); }
+        .dropzone--success { border-color: var(--accent-success); background: rgba(16,185,129,0.05); }
+        .dropzone--error { border-color: var(--accent-danger); background: rgba(239,68,68,0.05); }
+        .dropzone__icon { font-size: 48px; margin-bottom: 16px; opacity: 0.7; }
+        .dropzone__text { font-size: 1rem; color: var(--text-secondary); margin-bottom: 8px; }
+        .dropzone__text strong { color: var(--accent-primary); }
+        .dropzone__hint { font-size: 0.75rem; color: var(--text-muted); }
+        .dropzone__input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .upload-result { margin-top: 20px; padding: 16px; border-radius: var(--border-radius); font-size: 0.875rem; }
+        .upload-result--success { background: rgba(16,185,129,0.1); border: 1px solid var(--accent-success); color: var(--accent-success); }
+        .upload-result--error { background: rgba(239,68,68,0.1); border: 1px solid var(--accent-danger); color: var(--accent-danger); }
+        
+        .toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+        .toolbar__search { flex: 1; min-width: 250px; position: relative; }
+        .toolbar__search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .toolbar__search input { width: 100%; padding: 10px 12px 10px 40px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-primary); font-family: inherit; font-size: 0.875rem; }
+        .toolbar__search input:focus { outline: none; border-color: var(--accent-primary); }
+        .toolbar__search input::placeholder { color: var(--text-muted); }
+        .filter-select { padding: 10px 32px 10px 12px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-primary); font-family: inherit; font-size: 0.875rem; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; }
+        .filter-select:focus { outline: none; border-color: var(--accent-primary); }
+        
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border: none; border-radius: var(--border-radius); font-family: inherit; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all var(--transition-fast); text-decoration: none; }
+        .btn--primary { background: var(--accent-primary); color: white; }
+        .btn--primary:hover { background: var(--accent-hover); }
+        .btn--danger { background: var(--accent-danger); color: white; }
+        .btn--danger:hover { background: #dc2626; }
+        .btn--ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-color); }
+        .btn--ghost:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .btn--sm { padding: 6px 12px; font-size: 0.75rem; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .table-wrapper { overflow-x: auto; }
+        .table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .table th, .table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .table th { background: rgba(0,0,0,0.2); color: var(--text-secondary); font-weight: 500; text-transform: uppercase; font-size: 0.75rem; }
+        .table tbody tr:hover { background: rgba(59,130,246,0.05); }
+        .turno-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+        .turno-badge--manana { background: rgba(251,191,36,0.15); color: var(--turno-manana); }
+        .turno-badge--mediodia { background: rgba(251,146,60,0.15); color: var(--turno-mediodia); }
+        .turno-badge--tarde { background: rgba(167,139,250,0.15); color: var(--turno-tarde); }
+        .turno-badge--noche { background: rgba(56,189,248,0.15); color: var(--turno-noche); }
+        .table__actions { display: flex; gap: 8px; }
+        
+        .pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .pagination__info { font-size: 0.875rem; color: var(--text-secondary); }
+        .pagination__controls { display: flex; gap: 8px; }
+        .pagination__btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-secondary); cursor: pointer; }
+        .pagination__btn:hover:not(:disabled) { background: var(--bg-hover); color: var(--text-primary); }
+        .pagination__btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .pagination__btn--active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; }
+        
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all var(--transition-normal); }
+        .modal-overlay--active { opacity: 1; visibility: visible; }
+        .modal { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; transform: translateY(20px); transition: transform var(--transition-normal); }
+        .modal-overlay--active .modal { transform: translateY(0); }
+        .modal__header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border-color); }
+        .modal__title { font-size: 1.125rem; font-weight: 600; }
+        .modal__close { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; color: var(--text-muted); cursor: pointer; border-radius: 6px; }
+        .modal__close:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .modal__body { padding: 24px; }
+        .modal__footer { display: flex; justify-content: flex-end; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--border-color); background: rgba(0,0,0,0.2); }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px; }
+        .form-label--required::after { content: " *"; color: var(--accent-danger); }
+        .form-input, .form-select { width: 100%; padding: 12px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-primary); font-family: inherit; font-size: 0.9rem; }
+        .form-input:focus, .form-select:focus { outline: none; border-color: var(--accent-primary); }
+        .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+        
+        .empty-state { text-align: center; padding: 60px 24px; color: var(--text-muted); }
+        .empty-state__icon { font-size: 48px; opacity: 0.5; margin-bottom: 16px; }
+        
+        .toast-container { position: fixed; top: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 12px; }
+        .toast { display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius); box-shadow: var(--shadow-lg); animation: slideIn 0.3s ease; min-width: 300px; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .toast--success { border-left: 4px solid var(--accent-success); }
+        .toast--error { border-left: 4px solid var(--accent-danger); }
+        .toast__message { flex: 1; font-size: 0.875rem; }
+        .toast__close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; }
+        
+        .spinner { width: 24px; height: 24px; border: 3px solid var(--border-color); border-top-color: var(--accent-primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-overlay { display: flex; align-items: center; justify-content: center; padding: 40px; gap: 12px; color: var(--text-secondary); }
+        
+        @media (max-width: 768px) {
+            .container { padding: 16px; }
+            .header { flex-direction: column; align-items: flex-start; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .toolbar { flex-direction: column; }
+            .pagination { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal__header">
+                <h3 class="modal__title" id="modalTitle">Nuevo Registro</h3>
+                <button class="modal__close" onclick="cerrarModal()">✕</button>
+            </div>
+            <div class="modal__body">
+                <form id="formRegistro">
+                    <input type="hidden" id="registroId">
+                    <div class="form-group">
+                        <label class="form-label form-label--required" for="inputTurno">Turno</label>
+                        <select class="form-select" id="inputTurno" required>
+                            <option value="">Seleccione...</option>
+                            <option value="MAÑANA">Mañana</option>
+                            <option value="MEDIO DIA">Medio Día</option>
+                            <option value="TARDE">Tarde</option>
+                            <option value="NOCHE">Noche</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label form-label--required" for="inputMateria">Materia</label>
+                        <input type="text" class="form-input" id="inputMateria" placeholder="Ej: CÁLCULO I" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label form-label--required" for="inputDocente">Docente</label>
+                        <input type="text" class="form-input" id="inputDocente" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label form-label--required" for="inputAula">Aula</label>
+                        <input type="text" class="form-input" id="inputAula" placeholder="Ej: A-101" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label form-label--required" for="inputHorario">Horario</label>
+                        <input type="text" class="form-input" id="inputHorario" placeholder="Ej: 08:00 - 09:30" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--ghost" onclick="cerrarModal()">Cancelar</button>
+                <button class="btn btn--primary" id="btnGuardar" onclick="guardarRegistro()">Guardar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modalConfirmOverlay">
+        <div class="modal" style="max-width: 400px;">
+            <div class="modal__header">
+                <h3 class="modal__title">⚠️ Confirmar Eliminación</h3>
+                <button class="modal__close" onclick="cerrarModalConfirm()">✕</button>
+            </div>
+            <div class="modal__body">
+                <p style="color: var(--text-secondary);">¿Eliminar este registro?<br><br><strong id="confirmDeleteInfo" style="color: var(--text-primary);"></strong><br><br>Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--ghost" onclick="cerrarModalConfirm()">Cancelar</button>
+                <button class="btn btn--danger" id="btnConfirmDelete" onclick="confirmarEliminacion()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="header__title">
+                <div class="header__icon">⚙️</div>
+                <div class="header__text">
+                    <h1>Panel de Administración</h1>
+                    <p>Gestión de Aulas — UPDS</p>
+                </div>
+            </div>
+            <nav class="header__nav">
+                <a href="index.html" class="header__link">🏠 Ir a Consulta</a>
+                <a href="#" class="header__link" onclick="exportarDatos(); return false;">💾 Exportar Backup</a>
+            </nav>
+        </header>
+        
+        <section class="stats">
+            <div class="stat-card stat-card--accent">
+                <div class="stat-card__label">Total Registros</div>
+                <div class="stat-card__value" id="statTotal">--</div>
+            </div>
+            <div class="stat-card stat-card--success">
+                <div class="stat-card__label">Docentes Únicos</div>
+                <div class="stat-card__value" id="statDocentes">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Turno Mañana</div>
+                <div class="stat-card__value" id="statManana">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Turno Noche</div>
+                <div class="stat-card__value" id="statNoche">--</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="section__header">
+                <h2 class="section__title"><span class="section__title-icon">📤</span> Cargar Archivo Excel</h2>
+            </div>
+            <div class="section__content">
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Suba <code style="background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px;">rptListadoGeneral_del_Sistema.xlsx</code> <strong style="color: var(--accent-warning);">⚠️ Reemplaza todos los datos</strong></p>
+                <div class="dropzone" id="dropzone">
+                    <input type="file" class="dropzone__input" id="fileInput" accept=".xlsx,.xls" onchange="handleFileSelect(event)">
+                    <div class="dropzone__icon">📁</div>
+                    <p class="dropzone__text">Arrastra aquí o <strong>clic para seleccionar</strong></p>
+                    <p class="dropzone__hint">Solo .xlsx, .xls — Máx 16MB</p>
+                </div>
+                <div id="uploadResult"></div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="section__header">
+                <h2 class="section__title"><span class="section__title-icon">📋</span> Gestión de Registros</h2>
+                <button class="btn btn--primary" onclick="abrirModalNuevo()">➕ Nuevo</button>
+            </div>
+            <div class="section__content">
+                <div class="toolbar">
+                    <div class="toolbar__search">
+                        <span class="toolbar__search-icon">🔍</span>
+                        <input type="text" id="searchInput" placeholder="Buscar docente, materia, aula...">
+                    </div>
+                    <select class="filter-select" id="filterTurno" onchange="buscarRegistros()">
+                        <option value="">Todos los turnos</option>
+                        <option value="MAÑANA">Mañana</option>
+                        <option value="MEDIO DIA">Medio Día</option>
+                        <option value="TARDE">Tarde</option>
+                        <option value="NOCHE">Noche</option>
+                    </select>
+                </div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead><tr><th>ID</th><th>Turno</th><th>Materia</th><th>Docente</th><th>Aula</th><th>Horario</th><th>Acciones</th></tr></thead>
+                        <tbody id="tablaBody"></tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <div class="pagination__info" id="paginacionInfo">Cargando...</div>
+                    <div class="pagination__controls" id="paginacionControls"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        const API_BASE = "https://consulta-aulas-upds.onrender.com/api";
+        let estado = { paginaActual: 1, registrosPorPagina: 15, busqueda: "", filtroTurno: "", registroEditando: null };
+        let registroAEliminar = null;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            configurarDropzone();
+            cargarEstadisticas();
+            cargarRegistros();
+            let timeout;
+            document.getElementById('searchInput').addEventListener('input', () => { clearTimeout(timeout); timeout = setTimeout(buscarRegistros, 300); });
+        });
+        
+        function mostrarToast(msg, tipo = 'success', dur = 4000) {
+            const c = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            t.className = `toast toast--${tipo}`;
+            const icons = { success: '✅', error: '❌', warning: '⚠️' };
+            t.innerHTML = `<span>${icons[tipo]||'📢'}</span><span class="toast__message">${msg}</span><button class="toast__close" onclick="this.parentElement.remove()">✕</button>`;
+            c.appendChild(t);
+            setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, dur);
+        }
+        
+        function configurarDropzone() {
+            const dz = document.getElementById('dropzone');
+            ['dragenter','dragover'].forEach(e => dz.addEventListener(e, ev => { ev.preventDefault(); dz.classList.add('dropzone--active'); }));
+            ['dragleave','drop'].forEach(e => dz.addEventListener(e, ev => { ev.preventDefault(); dz.classList.remove('dropzone--active'); }));
+            dz.addEventListener('drop', e => { if(e.dataTransfer.files.length) subirArchivo(e.dataTransfer.files[0]); });
+        }
+        
+        function handleFileSelect(e) { if(e.target.files[0]) subirArchivo(e.target.files[0]); }
+        
+        async function subirArchivo(file) {
+            const dz = document.getElementById('dropzone'), res = document.getElementById('uploadResult');
+            if(!file.name.match(/\.(xlsx|xls)$/i)) { mostrarToast('Solo archivos Excel', 'error'); return; }
+            dz.classList.add('dropzone--active');
+            res.innerHTML = '<div class="loading-overlay"><div class="spinner"></div><span>Procesando...</span></div>';
+            try {
+                const fd = new FormData(); fd.append('file', file);
+                const r = await fetch(`${API_BASE}/admin/upload`, { method: 'POST', body: fd });
+                const d = await r.json();
+                if(r.ok) {
+                    dz.classList.remove('dropzone--active'); dz.classList.add('dropzone--success');
+                    res.innerHTML = `<div class="upload-result upload-result--success"><strong>✅ ${d.mensaje}</strong><br>📊 Anteriores: ${d.estadisticas.registros_anteriores}<br>📈 Nuevos: ${d.estadisticas.registros_nuevos}<br>👥 Docentes: ${d.estadisticas.docentes_unicos}</div>`;
+                    mostrarToast('Archivo procesado', 'success');
+                    cargarEstadisticas(); cargarRegistros();
+                    setTimeout(() => dz.classList.remove('dropzone--success'), 3000);
+                } else throw new Error(d.error);
+            } catch(e) {
+                dz.classList.remove('dropzone--active'); dz.classList.add('dropzone--error');
+                res.innerHTML = `<div class="upload-result upload-result--error"><strong>❌ Error</strong><br>${e.message}</div>`;
+                mostrarToast('Error al procesar', 'error');
+                setTimeout(() => dz.classList.remove('dropzone--error'), 3000);
+            }
+            document.getElementById('fileInput').value = '';
+        }
+        
+        async function cargarEstadisticas() {
+            try {
+                const r = await fetch(`${API_BASE}/health`), d = await r.json();
+                document.getElementById('statTotal').textContent = d.total_asignaciones;
+                document.getElementById('statDocentes').textContent = d.total_docentes;
+                const r2 = await fetch(`${API_BASE}/aulas`), d2 = await r2.json();
+                let m=0,n=0; d2.asignaciones.forEach(x => { if(x.turno==='MAÑANA')m++; if(x.turno==='NOCHE')n++; });
+                document.getElementById('statManana').textContent = m;
+                document.getElementById('statNoche').textContent = n;
+            } catch(e) { mostrarToast('Error estadísticas', 'error'); }
+        }
+        
+        async function cargarRegistros(pag = 1) {
+            const tb = document.getElementById('tablaBody');
+            tb.innerHTML = '<tr><td colspan="7"><div class="loading-overlay"><div class="spinner"></div><span>Cargando...</span></div></td></tr>';
+            try {
+                const p = new URLSearchParams({ page: pag, per_page: estado.registrosPorPagina });
+                if(estado.busqueda) p.append('search', estado.busqueda);
+                if(estado.filtroTurno) p.append('turno', estado.filtroTurno);
+                const r = await fetch(`${API_BASE}/admin/registros?${p}`), d = await r.json();
+                estado.paginaActual = d.paginacion.page;
+                renderTabla(d.registros); renderPag(d.paginacion);
+            } catch(e) {
+                tb.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="empty-state__icon">❌</div><p>Error</p><button class="btn btn--primary" onclick="cargarRegistros()">Reintentar</button></div></td></tr>';
+            }
+        }
+        
+        function buscarRegistros() {
+            estado.busqueda = document.getElementById('searchInput').value;
+            estado.filtroTurno = document.getElementById('filterTurno').value;
+            cargarRegistros(1);
+        }
+        
+        function renderTabla(regs) {
+            const tb = document.getElementById('tablaBody');
+            if(!regs.length) { tb.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="empty-state__icon">📭</div><p>Sin registros</p></div></td></tr>'; return; }
+            tb.innerHTML = regs.map(r => `<tr>
+                <td><code style="color:var(--text-muted)">#${r.id}</code></td>
+                <td>${badge(r.turno)}</td>
+                <td>${esc(r.materia)}</td>
+                <td><strong>${esc(r.docente)}</strong></td>
+                <td><code style="background:var(--bg-tertiary);padding:2px 8px;border-radius:4px">${esc(r.aula)}</code></td>
+                <td>${esc(r.horario)}</td>
+                <td><div class="table__actions"><button class="btn btn--ghost btn--sm" onclick="abrirModalEditar(${r.id})">✏️</button><button class="btn btn--ghost btn--sm" onclick="confirmarEliminar(${r.id},'${esc(r.docente)}','${esc(r.materia)}')">🗑️</button></div></td>
+            </tr>`).join('');
+        }
+        
+        function badge(t) {
+            const c = {'MAÑANA':'manana','MEDIO DIA':'mediodia','TARDE':'tarde','NOCHE':'noche'};
+            return `<span class="turno-badge turno-badge--${c[t]||''}">${t}</span>`;
+        }
+        
+        function renderPag(p) {
+            const info = document.getElementById('paginacionInfo'), ctrl = document.getElementById('paginacionControls');
+            const desde = (p.page-1)*p.per_page+1, hasta = Math.min(p.page*p.per_page, p.total);
+            info.textContent = p.total>0 ? `${desde}-${hasta} de ${p.total}` : 'Sin registros';
+            let h = `<button class="pagination__btn" onclick="cargarRegistros(${p.page-1})" ${!p.has_prev?'disabled':''}>←</button>`;
+            const ini = Math.max(1,p.page-2), fin = Math.min(p.total_pages,ini+4);
+            for(let i=ini;i<=fin;i++) h += `<button class="pagination__btn ${i===p.page?'pagination__btn--active':''}" onclick="cargarRegistros(${i})">${i}</button>`;
+            h += `<button class="pagination__btn" onclick="cargarRegistros(${p.page+1})" ${!p.has_next?'disabled':''}>→</button>`;
+            ctrl.innerHTML = h;
+        }
+        
+        function abrirModalNuevo() {
+            estado.registroEditando = null;
+            document.getElementById('modalTitle').textContent = 'Nuevo Registro';
+            document.getElementById('btnGuardar').textContent = 'Crear';
+            document.getElementById('formRegistro').reset();
+            document.getElementById('modalOverlay').classList.add('modal-overlay--active');
+        }
+        
+        async function abrirModalEditar(id) {
+            estado.registroEditando = id;
+            document.getElementById('modalTitle').textContent = 'Editar Registro';
+            document.getElementById('btnGuardar').textContent = 'Guardar';
+            try {
+                const r = await fetch(`${API_BASE}/admin/registros/${id}`), d = await r.json();
+                if(!r.ok) throw new Error(d.error);
+                const reg = d.registro;
+                document.getElementById('registroId').value = reg.id;
+                document.getElementById('inputTurno').value = reg.turno;
+                document.getElementById('inputMateria').value = reg.materia;
+                document.getElementById('inputDocente').value = reg.docente;
+                document.getElementById('inputAula').value = reg.aula;
+                document.getElementById('inputHorario').value = reg.horario;
+                document.getElementById('modalOverlay').classList.add('modal-overlay--active');
+            } catch(e) { mostrarToast('Error al cargar', 'error'); }
+        }
+        
+        function cerrarModal() { document.getElementById('modalOverlay').classList.remove('modal-overlay--active'); estado.registroEditando = null; }
+        
+        async function guardarRegistro() {
+            const form = document.getElementById('formRegistro');
+            if(!form.checkValidity()) { form.reportValidity(); return; }
+            const datos = {
+                turno: document.getElementById('inputTurno').value,
+                materia: document.getElementById('inputMateria').value,
+                docente: document.getElementById('inputDocente').value,
+                aula: document.getElementById('inputAula').value,
+                horario: document.getElementById('inputHorario').value
+            };
+            const btn = document.getElementById('btnGuardar'), txt = btn.textContent;
+            try {
+                btn.disabled = true; btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div>';
+                let r;
+                if(estado.registroEditando) r = await fetch(`${API_BASE}/admin/registros/${estado.registroEditando}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
+                else r = await fetch(`${API_BASE}/admin/registros`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
+                const d = await r.json();
+                if(!r.ok) throw new Error(d.error);
+                mostrarToast(estado.registroEditando ? 'Actualizado' : 'Creado', 'success');
+                cerrarModal(); cargarEstadisticas(); cargarRegistros(estado.paginaActual);
+            } catch(e) { mostrarToast(e.message || 'Error', 'error'); }
+            finally { btn.disabled = false; btn.textContent = txt; }
+        }
+        
+        function confirmarEliminar(id, doc, mat) {
+            registroAEliminar = id;
+            document.getElementById('confirmDeleteInfo').textContent = `${doc} — ${mat}`;
+            document.getElementById('modalConfirmOverlay').classList.add('modal-overlay--active');
+        }
+        
+        function cerrarModalConfirm() { document.getElementById('modalConfirmOverlay').classList.remove('modal-overlay--active'); registroAEliminar = null; }
+        
+        async function confirmarEliminacion() {
+            if(!registroAEliminar) return;
+            const btn = document.getElementById('btnConfirmDelete'), txt = btn.textContent;
+            try {
+                btn.disabled = true; btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div>';
+                const r = await fetch(`${API_BASE}/admin/registros/${registroAEliminar}`, { method:'DELETE' });
+                const d = await r.json();
+                if(!r.ok) throw new Error(d.error);
+                mostrarToast('Eliminado', 'success');
+                cerrarModalConfirm(); cargarEstadisticas(); cargarRegistros(estado.paginaActual);
+            } catch(e) { mostrarToast(e.message || 'Error', 'error'); }
+            finally { btn.disabled = false; btn.textContent = txt; }
+        }
+        
+        function exportarDatos() { window.open(`${API_BASE}/admin/export`, '_blank'); mostrarToast('Descargando...', 'success'); }
+        
+        function esc(t) { if(!t) return ''; const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+        
+        document.addEventListener('click', e => { if(e.target.id==='modalOverlay') cerrarModal(); if(e.target.id==='modalConfirmOverlay') cerrarModalConfirm(); });
+        document.addEventListener('keydown', e => { if(e.key==='Escape') { cerrarModal(); cerrarModalConfirm(); } });
+    </script>
+</body>
+</html>
