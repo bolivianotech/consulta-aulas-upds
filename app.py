@@ -162,6 +162,45 @@ def encontrar_hoja_reporte(wb):
     return None, None
 
 
+def encontrar_fila_encabezados(ws, max_filas=30):
+    """
+    Encuentra la fila de encabezados buscando columnas clave:
+    Nro, Materia, Docente, Aula, Horario (y opcional Turno).
+    """
+    claves = {"nro", "materia", "docente", "aula", "horario"}
+    for fila in range(1, max_filas + 1):
+        headers = []
+        for col in range(1, ws.max_column + 1):
+            valor = ws.cell(row=fila, column=col).value
+            if valor is None:
+                headers.append("")
+                continue
+            headers.append(normalizar(str(valor)))
+        presentes = {h for h in headers if h in claves}
+        if claves.issubset(presentes):
+            return fila, headers
+    return None, None
+
+
+def mapear_columnas(headers):
+    """Mapea columnas por encabezados normalizados."""
+    mapa = {}
+    for idx, h in enumerate(headers, start=1):
+        if h in ("nro", "numero", "n°"):
+            mapa["nro"] = idx
+        elif h == "turno":
+            mapa["turno"] = idx
+        elif h == "materia":
+            mapa["materia"] = idx
+        elif h == "docente":
+            mapa["docente"] = idx
+        elif h == "aula":
+            mapa["aula"] = idx
+        elif h == "horario":
+            mapa["horario"] = idx
+    return mapa
+
+
 def validar_registro(datos: dict, es_actualizacion: bool = False) -> tuple[bool, str]:
     """Valida que un registro tenga todos los campos requeridos."""
     campos_requeridos = ["turno", "materia", "docente", "aula", "horario"]
@@ -549,52 +588,86 @@ def admin_upload_excel():
                 }), 400
             ws = hoja_encontrada
 
-        ultima_fila = ultima_fila_columna_b(ws)
+        fila_headers, headers = encontrar_fila_encabezados(ws)
+        if fila_headers is None:
+            return jsonify({
+                "error": "No se encontraron encabezados válidos (Nro, Materia, Docente, Aula, Horario).",
+                "detalle": "Verifique que el reporte contenga la fila de encabezados."
+            }), 400
+
+        columnas = mapear_columnas(headers)
+        ultima_fila = ws.max_row
+
         nuevos_registros = []
         errores = []
 
         turno_actual = ""
         cont_datos = 0
 
-        for fila in range(8, ultima_fila + 1):
-            valor_b = str(ws.cell(row=fila, column=2).value or "").strip()
-
-            if valor_b == "Turno:":
-                valor_d = str(ws.cell(row=fila, column=4).value or "DESCONOCIDO").strip()
-                turno_actual = normalizar_turno(valor_d)
+        for fila in range(fila_headers + 1, ultima_fila + 1):
+            # Detectar cambio de turno en cualquier columna
+            turno_detectado = None
+            for col in range(1, ws.max_column + 1):
+                celda = ws.cell(row=fila, column=col).value
+                if celda and "TURNO" in str(celda).upper() and ":" in str(celda):
+                    for col2 in range(col + 1, ws.max_column + 1):
+                        val_turno = ws.cell(row=fila, column=col2).value
+                        if val_turno and str(val_turno).strip() != "":
+                            turno_detectado = str(val_turno).strip()
+                            break
+                    break
+            if turno_detectado:
+                turno_actual = normalizar_turno(turno_detectado)
                 continue
 
-            if valor_b == "" or valor_b == "0":
+            nro_col = columnas.get("nro")
+            materia_col = columnas.get("materia")
+            docente_col = columnas.get("docente")
+            aula_col = columnas.get("aula")
+            horario_col = columnas.get("horario")
+            turno_col = columnas.get("turno")
+
+            valor_nro = ws.cell(row=fila, column=nro_col).value if nro_col else None
+            valor_nro_str = str(valor_nro or "").strip()
+            if valor_nro_str == "" or valor_nro_str == "0":
                 continue
-            if "TOTALES" in valor_b.upper():
+            if "TOTALES" in valor_nro_str.upper():
                 continue
-            if valor_b == "Nro":
+            if valor_nro_str.lower() == "nro":
                 continue
 
-            check_subtotal = str(ws.cell(row=fila, column=12).value or "")
-            if "SUB TOTAL" in check_subtotal.upper():
+            # Subtotales en cualquier columna
+            subtotal = False
+            for col in range(1, ws.max_column + 1):
+                val = ws.cell(row=fila, column=col).value
+                if val and "SUB TOTAL" in str(val).upper():
+                    subtotal = True
+                    break
+            if subtotal:
                 continue
 
-            valor_b_num = ws.cell(row=fila, column=2).value
-            if not (isinstance(valor_b_num, (int, float)) or valor_b.startswith(".")):
+            if not (isinstance(valor_nro, (int, float)) or valor_nro_str.startswith(".")):
                 continue
 
-            if not turno_actual:
-                continue
+            turno = turno_actual
+            if turno_col:
+                turno_celda = ws.cell(row=fila, column=turno_col).value
+                if turno_celda and str(turno_celda).strip() != "":
+                    turno = normalizar_turno(turno_celda)
 
-            materia = str(ws.cell(row=fila, column=7).value or "").strip()
+            materia = str(ws.cell(row=fila, column=materia_col).value or "").strip()
             if materia == "" or materia == "0":
                 continue
 
-            nro = ws.cell(row=fila, column=2).value
-            docente = str(ws.cell(row=fila, column=11).value or "NO DEFINIDO").strip() or "NO DEFINIDO"
-            aula = str(ws.cell(row=fila, column=16).value or "").strip()
-            horario = str(ws.cell(row=fila, column=18).value or "").strip()
+            nro = valor_nro
+            docente = str(ws.cell(row=fila, column=docente_col).value or "NO DEFINIDO").strip() or "NO DEFINIDO"
+            aula = str(ws.cell(row=fila, column=aula_col).value or "").strip()
+            horario = str(ws.cell(row=fila, column=horario_col).value or "").strip()
 
             cont_datos += 1
 
             nuevos_registros.append({
-                "turno": turno_actual,
+                "turno": turno if turno else "DESCONOCIDO",
                 "materia": materia,
                 "docente": docente,
                 "aula": aula,
