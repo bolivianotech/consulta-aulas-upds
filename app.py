@@ -167,6 +167,14 @@ def encontrar_fila_encabezados(ws, max_filas=30):
     Encuentra la fila de encabezados buscando columnas clave:
     Nro, Materia, Docente, Aula, Horario (y opcional Turno).
     """
+    def norm_header(value: str) -> str:
+        if value is None:
+            return ""
+        v = normalizar(str(value))
+        # quitar puntuación simple
+        v = "".join(ch for ch in v if ch.isalnum() or ch.isspace()).strip()
+        return v
+
     claves = {"nro", "materia", "docente", "aula", "horario"}
     for fila in range(1, max_filas + 1):
         headers = []
@@ -175,7 +183,7 @@ def encontrar_fila_encabezados(ws, max_filas=30):
             if valor is None:
                 headers.append("")
                 continue
-            headers.append(normalizar(str(valor)))
+            headers.append(norm_header(valor))
         presentes = {h for h in headers if h in claves}
         if claves.issubset(presentes):
             return fila, headers
@@ -186,7 +194,7 @@ def mapear_columnas(headers):
     """Mapea columnas por encabezados normalizados."""
     mapa = {}
     for idx, h in enumerate(headers, start=1):
-        if h in ("nro", "numero", "n°"):
+        if h in ("nro", "numero", "n"):
             mapa["nro"] = idx
         elif h == "turno":
             mapa["turno"] = idx
@@ -590,12 +598,11 @@ def admin_upload_excel():
 
         fila_headers, headers = encontrar_fila_encabezados(ws)
         if fila_headers is None:
-            return jsonify({
-                "error": "No se encontraron encabezados válidos (Nro, Materia, Docente, Aula, Horario).",
-                "detalle": "Verifique que el reporte contenga la fila de encabezados."
-            }), 400
-
-        columnas = mapear_columnas(headers)
+            # Fallback al formato clásico de la macro
+            fila_headers = 7
+            columnas = {"nro": 2, "materia": 7, "docente": 11, "aula": 16, "horario": 18}
+        else:
+            columnas = mapear_columnas(headers)
         ultima_fila = ws.max_row
 
         nuevos_registros = []
@@ -609,13 +616,19 @@ def admin_upload_excel():
             turno_detectado = None
             for col in range(1, ws.max_column + 1):
                 celda = ws.cell(row=fila, column=col).value
-                if celda and "TURNO" in str(celda).upper() and ":" in str(celda):
+                if celda and "TURNO" in str(celda).upper():
+                    texto = str(celda)
+                    if ":" in texto:
+                        turno_detectado = texto.split(":", 1)[1].strip()
+                        if turno_detectado:
+                            break
                     for col2 in range(col + 1, ws.max_column + 1):
                         val_turno = ws.cell(row=fila, column=col2).value
                         if val_turno and str(val_turno).strip() != "":
                             turno_detectado = str(val_turno).strip()
                             break
-                    break
+                    if turno_detectado:
+                        break
             if turno_detectado:
                 turno_actual = normalizar_turno(turno_detectado)
                 continue
