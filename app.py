@@ -150,6 +150,18 @@ def ultima_fila_columna_b(ws) -> int:
     return ws.max_row
 
 
+def encontrar_hoja_reporte(wb):
+    """Busca la hoja que contiene 'LISTADO GENERAL POR GRUPOS' en las primeras filas."""
+    objetivo = "LISTADO GENERAL POR GRUPOS"
+    for ws in wb.worksheets:
+        for fila in range(1, 8):
+            for col in range(1, 15):
+                valor = ws.cell(row=fila, column=col).value
+                if valor and objetivo in str(valor).upper():
+                    return ws, f"{ws.title}!{openpyxl.utils.get_column_letter(col)}{fila}"
+    return None, None
+
+
 def validar_registro(datos: dict, es_actualizacion: bool = False) -> tuple[bool, str]:
     """Valida que un registro tenga todos los campos requeridos."""
     campos_requeridos = ["turno", "materia", "docente", "aula", "horario"]
@@ -526,13 +538,16 @@ def admin_upload_excel():
         wb = openpyxl.load_workbook(archivo, data_only=True)
         ws = wb.active
 
-        # Validación de formato
+        # Validación de formato (más flexible: buscar en primeras filas y hojas)
         celda_b2 = str(ws["B2"].value or "")
         if "LISTADO GENERAL POR GRUPOS" not in celda_b2.upper():
-            return jsonify({
-                "error": "No es un reporte válido. Celda B2 no contiene 'LISTADO GENERAL POR GRUPOS'.",
-                "detalle": celda_b2
-            }), 400
+            hoja_encontrada, celda_encontrada = encontrar_hoja_reporte(wb)
+            if hoja_encontrada is None:
+                return jsonify({
+                    "error": "No es un reporte válido. No se encontró 'LISTADO GENERAL POR GRUPOS' en las primeras filas.",
+                    "detalle": f"B2 (hoja activa): {celda_b2}"
+                }), 400
+            ws = hoja_encontrada
 
         ultima_fila = ultima_fila_columna_b(ws)
         nuevos_registros = []
