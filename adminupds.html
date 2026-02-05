@@ -129,6 +129,8 @@
         .spinner { width: 24px; height: 24px; border: 3px solid var(--border-color); border-top-color: var(--accent-primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading-overlay { display: flex; align-items: center; justify-content: center; padding: 40px; gap: 12px; color: var(--text-secondary); }
+        .session-warning { display: none; margin: 20px 0; padding: 14px 18px; border-radius: var(--border-radius); border: 1px solid var(--accent-warning); background: rgba(245, 158, 11, 0.12); color: var(--accent-warning); font-size: 0.9rem; }
+        .session-warning--active { display: block; }
         
         @media (max-width: 768px) {
             .container { padding: 16px; }
@@ -217,6 +219,10 @@
             </nav>
         </header>
         
+        <div class="session-warning" id="sessionWarning">
+            ⚠️ Hay más de 2 sesiones activas en este momento. Podría existir conflicto de cambios. Se recomienda esperar unos minutos y volver a intentar.
+        </div>
+        
         <section class="stats">
             <div class="stat-card stat-card--accent">
                 <div class="stat-card__label">Total Registros</div>
@@ -241,7 +247,7 @@
                 <h2 class="section__title"><span class="section__title-icon">📤</span> Cargar Archivo Excel</h2>
             </div>
             <div class="section__content">
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">Suba <code style="background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px;">rptListadoGeneral_del_Sistema.xlsx</code> <strong style="color: var(--accent-warning);">⚠️ Reemplaza todos los datos</strong></p>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Suba <code style="background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px;">rptListadorGeneral_del_Sistema.xlsx</code> <strong style="color: var(--accent-warning);">⚠️ Reemplaza todos los datos</strong></p>
                 <div class="dropzone" id="dropzone">
                     <input type="file" class="dropzone__input" id="fileInput" accept=".xlsx,.xls" onchange="handleFileSelect(event)">
                     <div class="dropzone__icon">📁</div>
@@ -287,6 +293,10 @@
     
     <script>
         const API_BASE = "https://consulta-aulas-upds.onrender.com/api";
+        const CLIENT_ID_KEY = "adminupds_client_id";
+        const CLIENT_ID = getClientId();
+        const USER_AGENT = navigator.userAgent || "unknown";
+        
         let estado = { paginaActual: 1, registrosPorPagina: 15, busqueda: "", filtroTurno: "", registroEditando: null };
         let registroAEliminar = null;
         
@@ -294,9 +304,50 @@
             configurarDropzone();
             cargarEstadisticas();
             cargarRegistros();
+            registrarSesion();
+            verificarSesiones();
+            setInterval(registrarSesion, 60000);
+            setInterval(verificarSesiones, 60000);
             let timeout;
             document.getElementById('searchInput').addEventListener('input', () => { clearTimeout(timeout); timeout = setTimeout(buscarRegistros, 300); });
         });
+        
+        function getClientId() {
+            let id = localStorage.getItem(CLIENT_ID_KEY);
+            if (!id) {
+                id = `cid_${Math.random().toString(36).slice(2)}_${Date.now()}`;
+                localStorage.setItem(CLIENT_ID_KEY, id);
+            }
+            return id;
+        }
+        
+        function apiFetch(url, options = {}) {
+            const headers = Object.assign({}, options.headers || {}, {
+                "X-Client-Id": CLIENT_ID,
+                "X-User-Agent": USER_AGENT
+            });
+            return fetch(url, Object.assign({}, options, { headers }));
+        }
+        
+        async function registrarSesion() {
+            try {
+                await apiFetch(`${API_BASE}/admin/session/heartbeat`, { method: 'POST' });
+            } catch (e) {
+                // Silencioso
+            }
+        }
+        
+        async function verificarSesiones() {
+            try {
+                const r = await apiFetch(`${API_BASE}/admin/session/active`);
+                const d = await r.json();
+                const warn = document.getElementById('sessionWarning');
+                if (d.active > 2) warn.classList.add('session-warning--active');
+                else warn.classList.remove('session-warning--active');
+            } catch (e) {
+                // Silencioso
+            }
+        }
         
         function mostrarToast(msg, tipo = 'success', dur = 4000) {
             const c = document.getElementById('toastContainer');
@@ -324,7 +375,7 @@
             res.innerHTML = '<div class="loading-overlay"><div class="spinner"></div><span>Procesando...</span></div>';
             try {
                 const fd = new FormData(); fd.append('file', file);
-                const r = await fetch(`${API_BASE}/admin/upload`, { method: 'POST', body: fd });
+                const r = await apiFetch(`${API_BASE}/admin/upload`, { method: 'POST', body: fd });
                 const d = await r.json();
                 if(r.ok) {
                     dz.classList.remove('dropzone--active'); dz.classList.add('dropzone--success');
@@ -344,10 +395,10 @@
         
         async function cargarEstadisticas() {
             try {
-                const r = await fetch(`${API_BASE}/health`), d = await r.json();
+                const r = await apiFetch(`${API_BASE}/health`), d = await r.json();
                 document.getElementById('statTotal').textContent = d.total_asignaciones;
                 document.getElementById('statDocentes').textContent = d.total_docentes;
-                const r2 = await fetch(`${API_BASE}/aulas`), d2 = await r2.json();
+                const r2 = await apiFetch(`${API_BASE}/aulas`), d2 = await r2.json();
                 let m=0,n=0; d2.asignaciones.forEach(x => { if(x.turno==='MAÑANA')m++; if(x.turno==='NOCHE')n++; });
                 document.getElementById('statManana').textContent = m;
                 document.getElementById('statNoche').textContent = n;
@@ -361,7 +412,7 @@
                 const p = new URLSearchParams({ page: pag, per_page: estado.registrosPorPagina });
                 if(estado.busqueda) p.append('search', estado.busqueda);
                 if(estado.filtroTurno) p.append('turno', estado.filtroTurno);
-                const r = await fetch(`${API_BASE}/admin/registros?${p}`), d = await r.json();
+                const r = await apiFetch(`${API_BASE}/admin/registros?${p}`), d = await r.json();
                 estado.paginaActual = d.paginacion.page;
                 renderTabla(d.registros); renderPag(d.paginacion);
             } catch(e) {
@@ -418,7 +469,7 @@
             document.getElementById('modalTitle').textContent = 'Editar Registro';
             document.getElementById('btnGuardar').textContent = 'Guardar';
             try {
-                const r = await fetch(`${API_BASE}/admin/registros/${id}`), d = await r.json();
+                const r = await apiFetch(`${API_BASE}/admin/registros/${id}`), d = await r.json();
                 if(!r.ok) throw new Error(d.error);
                 const reg = d.registro;
                 document.getElementById('registroId').value = reg.id;
@@ -447,8 +498,8 @@
             try {
                 btn.disabled = true; btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div>';
                 let r;
-                if(estado.registroEditando) r = await fetch(`${API_BASE}/admin/registros/${estado.registroEditando}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
-                else r = await fetch(`${API_BASE}/admin/registros`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
+                if(estado.registroEditando) r = await apiFetch(`${API_BASE}/admin/registros/${estado.registroEditando}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
+                else r = await apiFetch(`${API_BASE}/admin/registros`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(datos) });
                 const d = await r.json();
                 if(!r.ok) throw new Error(d.error);
                 mostrarToast(estado.registroEditando ? 'Actualizado' : 'Creado', 'success');
@@ -470,7 +521,7 @@
             const btn = document.getElementById('btnConfirmDelete'), txt = btn.textContent;
             try {
                 btn.disabled = true; btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div>';
-                const r = await fetch(`${API_BASE}/admin/registros/${registroAEliminar}`, { method:'DELETE' });
+                const r = await apiFetch(`${API_BASE}/admin/registros/${registroAEliminar}`, { method:'DELETE' });
                 const d = await r.json();
                 if(!r.ok) throw new Error(d.error);
                 mostrarToast('Eliminado', 'success');
