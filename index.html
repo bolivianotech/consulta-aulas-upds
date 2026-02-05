@@ -6,345 +6,87 @@
 <title>Consulta de Aulas — UPDS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ─── TOKENS ─── */
 :root {
-  --clr-bg:        #0b0f1a;
-  --clr-surface:   #111827;
-  --clr-surface2:  #1a2236;
-  --clr-border:    #2a3550;
-  --clr-accent:    #38bdf8;
-  --clr-accent2:   #818cf8;
-  --clr-text:      #e2e8f0;
-  --clr-muted:     #64748b;
-  --clr-danger:    #f87171;
-  --clr-success:   #34d399;
-
-  --clr-turno-man:   #fbbf24;
-  --clr-turno-med:   #fb923c;
-  --clr-turno-tar:   #a78bfa;
-  --clr-turno-noc:   #38bdf8;
-
-  --font-head:     'Bebas Neue', sans-serif;
-  --font-body:     'DM Sans', sans-serif;
-  --radius:        10px;
-  --radius-sm:     6px;
+  --clr-bg: #0b0f1a; --clr-surface: #111827; --clr-surface2: #1a2236;
+  --clr-border: #2a3550; --clr-accent: #38bdf8; --clr-accent2: #818cf8;
+  --clr-text: #e2e8f0; --clr-muted: #64748b; --clr-danger: #f87171; --clr-success: #34d399;
+  --clr-turno-man: #fbbf24; --clr-turno-med: #fb923c; --clr-turno-tar: #a78bfa; --clr-turno-noc: #38bdf8;
+  --font-head: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif;
+  --radius: 10px; --radius-sm: 6px;
 }
-
-/* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--clr-bg);
-  color: var(--clr-text);
-  min-height: 100vh;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ─── AMBIENT GLOW ─── */
-.glow {
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(56,189,248,.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(129,140,248,.08) 0%, transparent 55%);
-}
-
-/* ─── LAYOUT ─── */
+body { font-family: var(--font-body); background: var(--clr-bg); color: var(--clr-text); min-height: 100vh; line-height: 1.5; }
+.glow { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(56,189,248,.12) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(129,140,248,.08) 0%, transparent 55%); }
 .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 
-/* ─── HEADER ─── */
-.header {
-  text-align: center;
-  padding: 72px 0 48px;
-}
-.header__badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--clr-surface); border: 1px solid var(--clr-border);
-  border-radius: 999px; padding: 6px 16px; margin-bottom: 24px;
-  font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--clr-accent); font-weight: 500;
-}
-.header__badge .dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--clr-success);
-  box-shadow: 0 0 6px var(--clr-success);
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: .4; }
-}
-.header h1 {
-  font-family: var(--font-head);
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  letter-spacing: .03em;
-  line-height: 1.1;
-  color: #fff;
-}
-.header h1 span { color: var(--clr-accent); }
-.header p {
-  margin-top: 14px;
-  color: var(--clr-muted);
-  font-size: .95rem;
-  font-weight: 300;
-  max-width: 480px;
-  margin-left: auto; margin-right: auto;
-}
+.header { text-align: center; padding: 72px 0 48px; }
+.header__badge { display: inline-flex; align-items: center; gap: 8px; background: var(--clr-surface); border: 1px solid var(--clr-border);
+  border-radius: 999px; padding: 6px 16px; margin-bottom: 24px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--clr-accent); font-weight: 500; }
+.header__badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--clr-success); box-shadow: 0 0 6px var(--clr-success); animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+.header h1 { font-family: var(--font-head); font-size: clamp(2.4rem, 8vw, 4rem); letter-spacing: .04em; line-height: 1.05; }
+.header h1 span { background: linear-gradient(90deg, var(--clr-accent), var(--clr-accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header p { margin-top: 16px; color: var(--clr-muted); max-width: 480px; margin-inline: auto; font-size: .95rem; }
 
-/* ─── SEARCH CARD ─── */
-.search-card {
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
-  border-radius: 18px;
-  padding: 32px 28px;
-  margin-bottom: 36px;
-  backdrop-filter: blur(4px);
-}
-.search-card__label {
-  display: block;
-  font-size: .72rem;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--clr-muted);
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-.input-row { display: flex; gap: 10px; flex-wrap: wrap; }
-.input-row .input-wrap { flex: 1; min-width: 200px; position: relative; }
-
-.input-wrap input, .input-wrap select {
-  width: 100%;
-  background: var(--clr-surface2);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius);
-  padding: 13px 16px;
-  color: var(--clr-text);
-  font-family: var(--font-body);
-  font-size: .9rem;
-  transition: border-color .2s, box-shadow .2s;
-  outline: none;
-}
-.input-wrap input:focus, .input-wrap select:focus {
-  border-color: var(--clr-accent);
-  box-shadow: 0 0 0 3px rgba(56,189,248,.15);
-}
+.search-card { background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius); padding: 28px 24px; margin-bottom: 40px; }
+.search-card__label { display: block; font-size: .8rem; color: var(--clr-muted); margin-bottom: 10px; letter-spacing: .04em; text-transform: uppercase; }
+.input-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.input-wrap { position: relative; flex: 1; min-width: 200px; }
+.input-wrap input, .input-wrap select { width: 100%; padding: 14px 16px; background: var(--clr-surface2); border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm); color: var(--clr-text); font-family: inherit; font-size: .95rem; transition: border-color .2s, box-shadow .2s; }
+.input-wrap input:focus, .input-wrap select:focus { outline: none; border-color: var(--clr-accent); box-shadow: 0 0 0 3px rgba(56,189,248,.15); }
 .input-wrap input::placeholder { color: var(--clr-muted); }
 
-/* autocomplete dropdown */
-.autocomplete {
-  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius);
-  max-height: 220px; overflow-y: auto;
-  z-index: 50;
-  display: none;
-  box-shadow: 0 12px 32px rgba(0,0,0,.4);
-}
-.autocomplete.show { display: block; }
-.autocomplete li {
-  list-style: none;
-  padding: 11px 16px;
-  font-size: .88rem;
-  cursor: pointer;
-  border-bottom: 1px solid var(--clr-border);
-  transition: background .15s;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
+.autocomplete { position: absolute; top: 100%; left: 0; right: 0; background: var(--clr-surface2); border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm); margin-top: 4px; max-height: 260px; overflow-y: auto; list-style: none; display: none; z-index: 100; }
+.autocomplete.show { display: block; animation: fadeIn .15s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.autocomplete li { padding: 12px 16px; cursor: pointer; font-size: .9rem; border-bottom: 1px solid var(--clr-border); display: flex; align-items: center; gap: 10px; }
 .autocomplete li:last-child { border-bottom: none; }
-.autocomplete li:hover { background: var(--clr-surface2); }
-.autocomplete li .highlight { color: var(--clr-accent); }
+.autocomplete li:hover, .autocomplete li.active { background: rgba(56,189,248,.1); }
+.autocomplete li .highlight { color: var(--clr-accent); font-weight: 500; }
+.autocomplete li .tipo-tag { font-size: .65rem; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: 600; }
+.autocomplete li .tipo-tag.docente { background: rgba(56,189,248,.15); color: var(--clr-accent); }
+.autocomplete li .tipo-tag.materia { background: rgba(167,139,250,.15); color: var(--clr-accent2); }
 
-/* turno select */
-.input-wrap select { appearance: none; cursor: pointer; }
-.input-wrap select option { background: var(--clr-surface2); }
+.btn-buscar { padding: 14px 32px; background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent2)); border: none; border-radius: var(--radius-sm);
+  color: #0b0f1a; font-family: var(--font-head); font-size: 1.1rem; letter-spacing: .08em; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.btn-buscar:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56,189,248,.3); }
 
-.btn-buscar {
-  background: var(--clr-accent);
-  color: #0b0f1a;
-  border: none;
-  border-radius: var(--radius);
-  padding: 13px 32px;
-  font-family: var(--font-body);
-  font-size: .88rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background .2s, transform .1s;
-  letter-spacing: .03em;
-}
-.btn-buscar:hover { background: #7dd3fc; }
-.btn-buscar:active { transform: scale(.97); }
-
-/* ─── RESULTS ─── */
 .results { display: none; }
 .results.show { display: block; animation: fadeIn .3s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.results__header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 8px; }
+.results__title { font-family: var(--font-head); font-size: 1.4rem; letter-spacing: .04em; }
+.results__title span { color: var(--clr-accent); }
+.results__count { font-size: .82rem; color: var(--clr-muted); }
 
-.results__header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
-}
-.results__title {
-  font-family: var(--font-head);
-  font-size: 1.6rem;
-  letter-spacing: .04em;
-  color: #fff;
-}
-.results__title span { color: var(--clr-accent); font-weight: 400; }
-.results__count {
-  font-size: .78rem;
-  background: var(--clr-surface2);
-  border: 1px solid var(--clr-border);
-  border-radius: 999px;
-  padding: 4px 12px;
-  color: var(--clr-muted);
-}
-
-/* card grid */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
-}
-.card {
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius);
-  padding: 22px 20px;
-  transition: border-color .2s, transform .15s;
-  position: relative;
-  overflow: hidden;
-}
-.card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--clr-accent);
-  opacity: .6;
-}
-.card:hover {
-  border-color: var(--clr-accent);
-  transform: translateY(-2px);
-}
-
-.card__turno {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: .68rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  border-radius: 999px;
-  padding: 3px 10px;
-  margin-bottom: 12px;
-}
-.card__turno.manana   { background: rgba(251,191,36,.1);  color: var(--clr-turno-man); }
-.card__turno.mediadia { background: rgba(251,146,60,.1);  color: var(--clr-turno-med); }
-.card__turno.tarde    { background: rgba(167,139,250,.1); color: var(--clr-turno-tar); }
-.card__turno.noche    { background: rgba(56,189,248,.1);  color: var(--clr-turno-noc); }
-
-.card__aula {
-  font-family: var(--font-head);
-  font-size: 2rem;
-  letter-spacing: .04em;
-  color: #fff;
-  line-height: 1;
-  margin-bottom: 14px;
-}
-
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.card { background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+.card__turno { position: absolute; top: 0; right: 0; font-size: .65rem; font-weight: 700; letter-spacing: .06em; padding: 6px 14px;
+  border-radius: 0 var(--radius) 0 var(--radius); text-transform: uppercase; }
+.card__turno.man { background: rgba(251,191,36,.15); color: var(--clr-turno-man); }
+.card__turno.med { background: rgba(251,146,60,.15); color: var(--clr-turno-med); }
+.card__turno.tar { background: rgba(167,139,250,.15); color: var(--clr-turno-tar); }
+.card__turno.noc { background: rgba(56,189,248,.15); color: var(--clr-turno-noc); }
+.card__aula { font-family: var(--font-head); font-size: 2rem; letter-spacing: .05em; margin-bottom: 8px; color: var(--clr-accent); }
+.card__materia { font-size: .95rem; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
 .card__meta { display: flex; flex-direction: column; gap: 6px; }
-.card__meta-item {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: .82rem; color: var(--clr-muted);
-}
-.card__meta-item .icon {
-  flex-shrink: 0; width: 16px; height: 16px;
-  opacity: .5; margin-top: 1px;
-}
+.card__meta-item { display: flex; align-items: flex-start; gap: 8px; font-size: .82rem; color: var(--clr-muted); }
 .card__meta-item .label { color: var(--clr-text); font-weight: 400; }
 
-/* ─── EMPTY / ERROR ─── */
-.msg {
-  text-align: center;
-  padding: 48px 24px;
-  color: var(--clr-muted);
-  font-size: .88rem;
-}
+.msg { text-align: center; padding: 48px 24px; color: var(--clr-muted); font-size: .88rem; }
 .msg.error { color: var(--clr-danger); }
 .msg .icon-big { font-size: 2.4rem; margin-bottom: 12px; display: block; }
 
-/* ─── FOOTER API DOC ─── */
-.api-doc {
-  margin-top: 56px;
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
-  border-radius: 14px;
-  padding: 28px 24px;
-}
-.api-doc__title {
-  font-family: var(--font-head);
-  font-size: 1.1rem;
-  letter-spacing: .06em;
-  color: var(--clr-muted);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px; cursor: pointer;
-}
-.api-doc__title .chevron { transition: transform .2s; display: inline-block; }
-.api-doc__title.open .chevron { transform: rotate(90deg); }
+.admin-link { position: fixed; bottom: 20px; right: 20px; background: var(--clr-surface); border: 1px solid var(--clr-border);
+  padding: 10px 16px; border-radius: var(--radius-sm); color: var(--clr-muted); text-decoration: none; font-size: .8rem; transition: all .2s; }
+.admin-link:hover { background: var(--clr-surface2); color: var(--clr-text); }
 
-.api-doc__body { display: none; }
-.api-doc__body.show { display: block; animation: fadeIn .25s ease; }
-
-.endpoint {
-  margin-bottom: 16px;
-  border-left: 3px solid var(--clr-accent);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  background: var(--clr-surface2);
-  padding: 14px 18px;
-}
-.endpoint__head {
-  display: flex; align-items: center; gap: 10px;
-  font-size: .82rem; margin-bottom: 6px;
-}
-.endpoint__method {
-  background: var(--clr-accent);
-  color: #0b0f1a;
-  font-weight: 700;
-  font-size: .68rem;
-  padding: 2px 8px;
-  border-radius: 4px;
-  letter-spacing: .05em;
-}
-.endpoint__path {
-  font-family: 'DM Sans', monospace;
-  color: var(--clr-accent);
-  font-size: .82rem;
-}
-.endpoint__desc {
-  font-size: .78rem;
-  color: var(--clr-muted);
-  margin-top: 4px;
-}
-.endpoint__params {
-  margin-top: 8px;
-  font-size: .76rem;
-  color: var(--clr-muted);
-}
-.endpoint__params code {
-  background: rgba(56,189,248,.1);
-  color: var(--clr-accent);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: .75rem;
-}
-
-/* ─── RESPONSIVE ─── */
 @media (max-width: 560px) {
   .header { padding: 48px 0 32px; }
   .search-card { padding: 22px 18px; }
@@ -355,27 +97,19 @@ body {
 </style>
 </head>
 <body>
-
 <div class="glow"></div>
-
 <div class="wrapper">
-
-  <!-- HEADER -->
   <header class="header">
-    <div class="header__badge">
-      <span class="dot"></span>
-      Servicio activo — UPDS 2026
-    </div>
+    <div class="header__badge"><span class="dot"></span> Servicio activo — UPDS 2026</div>
     <h1>Consulta de <span>Aulas</span><br/>Docentes</h1>
-    <p>Ingrese su nombre para ver las aulas asignadas a sus materias en el presente período académico.</p>
+    <p>Ingrese el nombre del docente o la materia para ver las aulas asignadas en el presente período académico.</p>
   </header>
 
-  <!-- SEARCH -->
   <section class="search-card">
-    <label class="search-card__label">Nombre del docente</label>
+    <label class="search-card__label">Materia o Nombre del Docente</label>
     <div class="input-row">
-      <div class="input-wrap" id="docente-wrap">
-        <input type="text" id="input-docente" autocomplete="off" placeholder="Ej: Miranda Hoyos…"/>
+      <div class="input-wrap" id="search-wrap">
+        <input type="text" id="input-search" autocomplete="off" placeholder="Ej: Cálculo I, Miranda Hoyos…"/>
         <ul class="autocomplete" id="autocomplete-list"></ul>
       </div>
       <div class="input-wrap" style="max-width:170px;">
@@ -391,7 +125,6 @@ body {
     </div>
   </section>
 
-  <!-- RESULTS -->
   <section class="results" id="results">
     <div class="results__header">
       <h2 class="results__title" id="results-title">Resultados para <span id="results-name">—</span></h2>
@@ -399,220 +132,129 @@ body {
     </div>
     <div id="results-body"></div>
   </section>
-
-  <!-- API DOC -->
-  <section class="api-doc">
-    <div class="api-doc__title" id="api-doc-toggle">
-      <span class="chevron">▸</span> Documentación de la API
-    </div>
-    <div class="api-doc__body" id="api-doc-body">
-      <div class="endpoint">
-        <div class="endpoint__head">
-          <span class="endpoint__method">GET</span>
-          <span class="endpoint__path">/api/consulta</span>
-        </div>
-        <div class="endpoint__desc">Consulta principal: retorna las aulas asignadas a un docente.</div>
-        <div class="endpoint__params">
-          Parámetros: <code>docente</code> (requerido) · <code>turno</code> (opcional)<br/>
-          Ejemplo: <code>/api/consulta?docente=Miranda&turno=MAÑANA</code>
-        </div>
-      </div>
-      <div class="endpoint">
-        <div class="endpoint__head">
-          <span class="endpoint__method">GET</span>
-          <span class="endpoint__path">/api/docentes</span>
-        </div>
-        <div class="endpoint__desc">Lista todos los docentes disponibles. Soporta filtro parcial.</div>
-        <div class="endpoint__params">
-          Parámetros: <code>q</code> (opcional)<br/>
-          Ejemplo: <code>/api/docentes?q=Miranda</code>
-        </div>
-      </div>
-      <div class="endpoint">
-        <div class="endpoint__head">
-          <span class="endpoint__method">GET</span>
-          <span class="endpoint__path">/api/aulas</span>
-        </div>
-        <div class="endpoint__desc">Lista todas las asignaciones con filtros opcionales.</div>
-        <div class="endpoint__params">
-          Parámetros: <code>turno</code> · <code>materia</code> · <code>aula</code> (todos opcionales)<br/>
-          Ejemplo: <code>/api/aulas?turno=NOCHE&aula=LAB</code>
-        </div>
-      </div>
-      <div class="endpoint">
-        <div class="endpoint__head">
-          <span class="endpoint__method">GET</span>
-          <span class="endpoint__path">/api/health</span>
-        </div>
-        <div class="endpoint__desc">Verificación de estado del servicio.</div>
-      </div>
-    </div>
-  </section>
-
 </div>
 
+<a href="adminupds.html" class="admin-link">⚙️ Admin</a>
+
 <script>
-// ─────────────────────────────────────────────
-// CONFIGURACIÓN
-// ─────────────────────────────────────────────
 const API_BASE = "https://consulta-aulas-upds.onrender.com/api";
-// Si deploys en otro host, cambia API_BASE aquí:
-// const API_BASE = "https://tu-servidor.com/api";
 
-// ─────────────────────────────────────────────
-// ELEMENTOS
-// ─────────────────────────────────────────────
-const inputDocente   = document.getElementById("input-docente");
-const selectTurno    = document.getElementById("select-turno");
-const btnBuscar      = document.getElementById("btn-buscar");
-const autocompleteEl = document.getElementById("autocomplete-list");
-const resultsSection = document.getElementById("results");
-const resultsTitle   = document.getElementById("results-name");
-const resultsCount   = document.getElementById("results-count");
-const resultsBody    = document.getElementById("results-body");
-const apiDocToggle   = document.getElementById("api-doc-toggle");
-const apiDocBody     = document.getElementById("api-doc-body");
+const inputSearch = document.getElementById('input-search');
+const autocompleteList = document.getElementById('autocomplete-list');
+const selectTurno = document.getElementById('select-turno');
+const btnBuscar = document.getElementById('btn-buscar');
+const resultsSection = document.getElementById('results');
+const resultsTitle = document.getElementById('results-title');
+const resultsName = document.getElementById('results-name');
+const resultsCount = document.getElementById('results-count');
+const resultsBody = document.getElementById('results-body');
 
-// ─────────────────────────────────────────────
-// AUTOCOMPLETE
-// ─────────────────────────────────────────────
-let debounceTimer = null;
+let debounceTimer;
+let activeIndex = -1;
 
-inputDocente.addEventListener("input", () => {
+// Autocompletado combinado (docentes y materias)
+inputSearch.addEventListener('input', () => {
   clearTimeout(debounceTimer);
-  const val = inputDocente.value.trim();
-  if (val.length < 2) { hideAutocomplete(); return; }
-  debounceTimer = setTimeout(() => fetchAutocomplete(val), 260);
+  const q = inputSearch.value.trim();
+  if (q.length < 2) { autocompleteList.classList.remove('show'); return; }
+  debounceTimer = setTimeout(() => fetchSugerencias(q), 200);
 });
 
-async function fetchAutocomplete(q) {
+async function fetchSugerencias(q) {
   try {
-    const res = await fetch(`${API_BASE}/docentes?q=${encodeURIComponent(q)}`);
+    const res = await fetch(`${API_BASE}/sugerencias?q=${encodeURIComponent(q)}`);
     const data = await res.json();
-    renderAutocomplete(data.docentes, q);
-  } catch {
-    hideAutocomplete();
-  }
+    renderAutocomplete(data.sugerencias, q);
+  } catch (e) { autocompleteList.classList.remove('show'); }
 }
 
-function renderAutocomplete(docentes, q) {
-  if (!docentes.length) { hideAutocomplete(); return; }
-  const qLow = q.toLowerCase();
-  autocompleteEl.innerHTML = docentes.slice(0, 8).map(d => {
-    const idx = d.toLowerCase().indexOf(qLow);
-    let html = d;
-    if (idx !== -1) {
-      const before = d.slice(0, idx);
-      const match  = d.slice(idx, idx + q.length);
-      const after  = d.slice(idx + q.length);
-      html = `${before}<span class="highlight">${match}</span>${after}`;
-    }
-    return `<li data-value="${d}">${html}</li>`;
-  }).join("");
-  autocompleteEl.classList.add("show");
-
-  autocompleteEl.querySelectorAll("li").forEach(li => {
-    li.addEventListener("click", () => {
-      inputDocente.value = li.dataset.value;
-      hideAutocomplete();
-      ejecutarBusqueda();
-    });
-  });
+function renderAutocomplete(items, query) {
+  if (!items.length) { autocompleteList.classList.remove('show'); return; }
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  autocompleteList.innerHTML = items.map((item, i) => {
+    const highlighted = item.texto.replace(regex, '<span class="highlight">$1</span>');
+    const tipoClass = item.tipo === 'docente' ? 'docente' : 'materia';
+    const tipoLabel = item.tipo === 'docente' ? '👤 Docente' : '📚 Materia';
+    return `<li data-index="${i}" data-texto="${item.texto}">
+      <span class="tipo-tag ${tipoClass}">${tipoLabel}</span>
+      <span>${highlighted}</span>
+    </li>`;
+  }).join('');
+  activeIndex = -1;
+  autocompleteList.classList.add('show');
 }
 
-function hideAutocomplete() {
-  autocompleteEl.classList.remove("show");
-}
-
-document.addEventListener("click", (e) => {
-  if (!document.getElementById("docente-wrap").contains(e.target)) {
-    hideAutocomplete();
-  }
+autocompleteList.addEventListener('click', e => {
+  const li = e.target.closest('li');
+  if (li) { inputSearch.value = li.dataset.texto; autocompleteList.classList.remove('show'); buscar(); }
 });
 
-// ─────────────────────────────────────────────
-// BÚSQUEDA PRINCIPAL
-// ─────────────────────────────────────────────
-btnBuscar.addEventListener("click", ejecutarBusqueda);
-inputDocente.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") ejecutarBusqueda();
+inputSearch.addEventListener('keydown', e => {
+  const items = autocompleteList.querySelectorAll('li');
+  if (!items.length) return;
+  if (e.key === 'ArrowDown') { e.preventDefault(); activeIndex = (activeIndex + 1) % items.length; updateActive(items); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); activeIndex = (activeIndex - 1 + items.length) % items.length; updateActive(items); }
+  else if (e.key === 'Enter' && activeIndex >= 0) { e.preventDefault(); items[activeIndex].click(); }
+  else if (e.key === 'Escape') { autocompleteList.classList.remove('show'); }
 });
 
-async function ejecutarBusqueda() {
-  const nombre = inputDocente.value.trim();
-  const turno  = selectTurno.value;
-  if (!nombre) return;
+function updateActive(items) {
+  items.forEach((li, i) => li.classList.toggle('active', i === activeIndex));
+  if (activeIndex >= 0) items[activeIndex].scrollIntoView({ block: 'nearest' });
+}
 
-  hideAutocomplete();
-  btnBuscar.textContent = "Buscando…";
-  btnBuscar.style.opacity = ".7";
+document.addEventListener('click', e => { if (!e.target.closest('#search-wrap')) autocompleteList.classList.remove('show'); });
 
+btnBuscar.addEventListener('click', buscar);
+inputSearch.addEventListener('keydown', e => { if (e.key === 'Enter' && activeIndex < 0) buscar(); });
+
+async function buscar() {
+  const q = inputSearch.value.trim();
+  const turno = selectTurno.value;
+  if (!q) { inputSearch.focus(); return; }
+  
+  resultsBody.innerHTML = '<div class="msg"><div class="spinner" style="margin:0 auto;width:32px;height:32px;border:3px solid var(--clr-border);border-top-color:var(--clr-accent);border-radius:50%;animation:spin .8s linear infinite"></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style></div>';
+  resultsSection.classList.add('show');
+  
   try {
-    let url = `${API_BASE}/consulta?docente=${encodeURIComponent(nombre)}`;
+    let url = `${API_BASE}/consulta?q=${encodeURIComponent(q)}`;
     if (turno) url += `&turno=${encodeURIComponent(turno)}`;
     const res = await fetch(url);
     const data = await res.json();
-    renderResultados(data);
-  } catch {
-    renderError("No se pudo conectar con el servicio. Verifique que la API esté activa.");
+    
+    if (data.error) { resultsBody.innerHTML = `<div class="msg error"><span class="icon-big">⚠️</span>${data.error}</div>`; return; }
+    
+    resultsName.textContent = data.encontrado || q;
+    resultsCount.textContent = `${data.total_asignaciones} asignación${data.total_asignaciones !== 1 ? 'es' : ''} ${data.tipo_busqueda === 'materia' ? '(por materia)' : '(por docente)'}`;
+    
+    if (!data.asignaciones.length) {
+      resultsBody.innerHTML = `<div class="msg"><span class="icon-big">🔍</span>No se encontraron resultados para "<strong>${q}</strong>"</div>`;
+      return;
+    }
+    
+    resultsBody.innerHTML = `<div class="card-grid">${data.asignaciones.map(a => renderCard(a, data.tipo_busqueda)).join('')}</div>`;
+  } catch (e) {
+    resultsBody.innerHTML = `<div class="msg error"><span class="icon-big">❌</span>Error de conexión. Intente nuevamente.</div>`;
   }
-
-  btnBuscar.textContent = "Buscar";
-  btnBuscar.style.opacity = "1";
 }
 
-// ─────────────────────────────────────────────
-// RENDERIZADO
-// ─────────────────────────────────────────────
-function renderResultados(data) {
-  resultsSection.classList.add("show");
-  resultsTitle.textContent   = data.docente || data.consulta;
-  resultsCount.textContent   = `${data.total_asignaciones} asignación${data.total_asignaciones !== 1 ? "es" : ""}`;
-
-  if (!data.asignaciones.length) {
-    resultsBody.innerHTML = `<div class="msg"><span class="icon-big">🔍</span>No se encontraron asignaciones con ese nombre.<br/>Verifique la ortografía o intente con un nombre más corto.</div>`;
-    return;
+function renderCard(a, tipoBusqueda) {
+  const turnoClass = { 'MAÑANA': 'man', 'MEDIO DIA': 'med', 'TARDE': 'tar', 'NOCHE': 'noc' }[a.turno] || '';
+  let html = '<article class="card">';
+  html += '<div class="card__turno ' + turnoClass + '">' + a.turno + '</div>';
+  html += '<div class="card__aula">' + a.aula + '</div>';
+  html += '<div class="card__materia">' + a.materia + '</div>';
+  html += '<div class="card__meta">';
+  if (tipoBusqueda === 'materia') {
+    html += '<div class="card__meta-item"><span>👤</span><span class="label">' + a.docente + '</span></div>';
   }
-
-  resultsBody.innerHTML = `<div class="card-grid">${data.asignaciones.map(renderCard).join("")}</div>`;
+  html += '<div class="card__meta-item"><span>🕐</span><span class="label">' + a.horario + '</span></div>';
+  if (tipoBusqueda === 'docente') {
+    html += '<div class="card__meta-item"><span>👤</span><span class="label">' + a.docente + '</span></div>';
+  }
+  html += '</div></article>';
+  return html;
 }
-
-function renderCard(item) {
-  const turnoKey = item.turno.replace(/\s+/g, "").toLowerCase();
-  const turnoMap = { manana: "☀️", mediadia: "🌤️", tarde: "🌆", noche: "🌙" };
-  return `
-    <div class="card">
-      <div class="card__turno ${turnoKey}">
-        ${turnoMap[turnoKey] || ""} ${item.turno}
-      </div>
-      <div class="card__aula">${item.aula}</div>
-      <div class="card__meta">
-        <div class="card__meta-item">
-          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="2"/><path d="M2 6h12"/></svg>
-          <span class="label">${item.materia}</span>
-        </div>
-        <div class="card__meta-item">
-          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-          <span class="label">${item.horario}</span>
-        </div>
-      </div>
-    </div>`;
-}
-
-function renderError(msg) {
-  resultsSection.classList.add("show");
-  resultsTitle.textContent = "Error";
-  resultsCount.textContent = "";
-  resultsBody.innerHTML = `<div class="msg error"><span class="icon-big">⚠️</span>${msg}</div>`;
-}
-
-// ─────────────────────────────────────────────
-// API DOC TOGGLE
-// ─────────────────────────────────────────────
-apiDocToggle.addEventListener("click", () => {
-  apiDocToggle.classList.toggle("open");
-  apiDocBody.classList.toggle("show");
-});
 </script>
 </body>
 </html>
