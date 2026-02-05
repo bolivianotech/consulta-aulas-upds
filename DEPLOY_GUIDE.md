@@ -33,13 +33,16 @@
 
 ## 5) Cold Start en Render (cron-job.org)
 Para evitar que el servicio entre en sleep:
-1. Crear una cuenta en https://cron-job.org
-2. Crear un nuevo job con la URL:
+1. Crear una cuenta en cron-job.org.
+2. Crear un nuevo job (cronjob).
+3. Configurar el job para hacer un **HTTP GET** a:
    - `https://consulta-aulas-upds.onrender.com/api/health`
-3. Programar cada 5 o 10 minutos.
-4. Guardar.
+4. Programar el job cada 10-12 minutos.
+5. Guardar el job y ejecutar un test run.
 
-Recomendación: usar intervalo de 5 minutos en horas de alta demanda.
+Notas:
+- cron-job.org permite ejecutar jobs hasta una vez por minuto y configurar requests HTTP personalizados.
+- Render recomienda tener un endpoint de health check que responda con 2xx/3xx para verificar disponibilidad.
 
 ## 6) Auditoría
 La tabla `auditlog` guarda:
