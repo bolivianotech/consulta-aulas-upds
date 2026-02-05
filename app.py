@@ -175,7 +175,7 @@ def encontrar_fila_encabezados(ws, max_filas=30):
         v = "".join(ch for ch in v if ch.isalnum() or ch.isspace()).strip()
         return v
 
-    claves = {"nro", "materia", "docente", "aula", "horario"}
+    claves = {"materia", "docente", "aula", "horario"}
     for fila in range(1, max_filas + 1):
         headers = []
         for col in range(1, ws.max_column + 1):
@@ -642,10 +642,6 @@ def admin_upload_excel():
 
             valor_nro = ws.cell(row=fila, column=nro_col).value if nro_col else None
             valor_nro_str = str(valor_nro or "").strip()
-            if valor_nro_str == "" or valor_nro_str == "0":
-                continue
-            if "TOTALES" in valor_nro_str.upper():
-                continue
             if valor_nro_str.lower() == "nro":
                 continue
 
@@ -659,9 +655,6 @@ def admin_upload_excel():
             if subtotal:
                 continue
 
-            if not (isinstance(valor_nro, (int, float)) or valor_nro_str.startswith(".")):
-                continue
-
             turno = turno_actual
             if turno_col:
                 turno_celda = ws.cell(row=fila, column=turno_col).value
@@ -669,13 +662,18 @@ def admin_upload_excel():
                     turno = normalizar_turno(turno_celda)
 
             materia = str(ws.cell(row=fila, column=materia_col).value or "").strip()
-            if materia == "" or materia == "0":
-                continue
-
-            nro = valor_nro
             docente = str(ws.cell(row=fila, column=docente_col).value or "NO DEFINIDO").strip() or "NO DEFINIDO"
             aula = str(ws.cell(row=fila, column=aula_col).value or "").strip()
             horario = str(ws.cell(row=fila, column=horario_col).value or "").strip()
+
+            if materia == "" or materia == "0":
+                continue
+
+            if (docente == "NO DEFINIDO") and not aula and not horario:
+                # Evita filas vacías donde solo aparece materia sin datos útiles
+                continue
+
+            nro = valor_nro
 
             cont_datos += 1
 
